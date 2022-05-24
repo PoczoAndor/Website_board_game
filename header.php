@@ -9,10 +9,10 @@
     <nav>
       <div class="wrapper">
         <ul>
-          <li><a href="">Home</a></li>
+          <li><a href="Index.php">Home</a></li>
           <li><a href="">About</a></li>
-          <li><a href="login.php">Sign up</a></li>
-          <li><a href="signup.php">Log In</a></li>
+          <li><a href="signup.php">Sign up</a></li>
+          <li><a href="login.php">Log In</a></li>
         </ul>
       </div>
     </nav>
