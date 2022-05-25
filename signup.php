@@ -3,7 +3,7 @@ include_once'header.php';
  ?>
  <section class="signup-form">
    <h1>Sign Upp</h1>
-   <form action="singup.inc.php" method="post">
+   <form action="Includes\signup.inc.php" method="post">
      <input type="text" name="name" placeholder="Full name...">
      <input type="text" name="email" placeholder="Email...">
      <input type="text" name="uid" placeholder="Username...">

@@ -2,7 +2,7 @@
 $serverName="localhost";
 $dBUserName="root";
 $dBPassword="";
-$dBName="Accounts";
+$dBName="web_boardgame";
 
 $conn=mysqli_connect($serverName,$dBUserName,$dBPassword,$dBName);
 if(!$conn)
