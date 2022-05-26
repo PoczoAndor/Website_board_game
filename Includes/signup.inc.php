@@ -9,31 +9,32 @@ require_once 'dbh.inc.php';
 require_once 'functions.inc.php';
 if(emptyInputSignup($name,$email,$username,$pwd,$pwdrepeat)!==false)
 {
-  header("location:..\signup.php?error=emptyinput");
+  header("location:../signup.php?error=emptyinput");
   exit();
 }
 if(invalidUid($username)!==false)
 {
-  header("location:..\signup.php?error=invalidUid");
+  header("location:../signup.php?error=invalidUid");
   exit();
 }
 if(invalidEmail($email)!==false)
 {
-  header("location:..\signup.php?error=invalidEmail");
+  header("location:../signup.php?error=invalidEmail");
   exit();
 }
 if(pwdMatch($pwd,$pwdrepeat)!==false)
 {
-  header("location:..\signup.php?error=passworddontmatch");
+  header("location:../signup.php?error=passworddontmatch");
   exit();
 }
-if(uidExists($conn,$username)!==false)
+if(uidExists($conn,$username,$email)!==false)
 {
-  header("location:..\signup.php?error=usernametaken");
+  header("location:../signup.php?error=usernametaken");
   exit();
 }
+createUser($conn,$name,$email,$username,$pwd);
 }
 else {
-  header("location:..\signup.php");
+  header("location:../signup.php");
     exit();
 }
