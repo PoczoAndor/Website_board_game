@@ -88,3 +88,35 @@ mysqli_stmt_close($stmt);
 header("location:../signup.php?error=none");
 exit();
 }
+function emptyInputLogin($username,$pwd)
+{
+  $result;
+  if (empty($username)||empty($pwd) ) {
+  $result=true;
+  }
+  else {
+    $result=false;
+  }
+  return $result;
+}
+function loginUser($conn,$username,$pwd)
+{
+  $uidExists=uidExists($conn,$username,$username);
+  if ($uidExists===false) {
+    header("location:../login.php?error=wronglogin");
+    exit();
+  }
+  $pwdHashed=$uidExists["usersPWD"];
+  $checkPWD=password_verify($pwd,$pwdHashed);
+  if ($checkPWD===false) {
+    header("location:../login.php?error=wronglogin");
+    exit();
+  }
+  else if ($checkPWD===true) {
+    session_start();
+    $_SESSION["userid"] =$uidExists["usersID"];
+    $_SESSION["useruid"] =$uidExists["usersUid"];
+    header("location:../index.php?");
+    exit();
+  }
+}
