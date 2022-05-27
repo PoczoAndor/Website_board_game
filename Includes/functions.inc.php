@@ -1,6 +1,7 @@
 <?php
 require_once 'dbh.inc.php';
 require_once 'functions.inc.php';
+//check if on signup form is epty
 function emptyInputSignup($name,$email,$username,$pwd,$pwdrepeat)
 {
   $result;
@@ -12,6 +13,7 @@ function emptyInputSignup($name,$email,$username,$pwd,$pwdrepeat)
   }
   return $result;
 }
+//check if on signup the username is letters or numbers
 function invalidUid($username)
 {
   $result;
@@ -23,6 +25,7 @@ function invalidUid($username)
   }
   return $result;
 }
+//check if on signup the email is not already in database
 function invalidEmail($email)
 {
   $result;
@@ -34,6 +37,7 @@ function invalidEmail($email)
   }
   return $result;
 }
+//check if on signup the second password matches
 function pwdMatch($pwd,$pwdrepeat)
 {
   $result;
@@ -47,6 +51,7 @@ function pwdMatch($pwd,$pwdrepeat)
   }
   return $result;
 }
+//check if on signup the user id dosent exist in database
 function uidExists($conn,$username,$email)
 {
  $sql="SELECT * FROM users WHERE usersUID =? OR usersEmail=?;";
@@ -71,7 +76,7 @@ else
 
 mysqli_stmt_close($stmt);
 }
-
+//create the user and add it to the database
 function createUser($conn,$name,$email,$username,$pwd)
 {
 $sql="INSERT INTO users(usersName,usersEmail,usersUID,usersPWD) Values (?,?,?,?);";
@@ -81,7 +86,7 @@ if(!mysqli_stmt_prepare($stmt,$sql))
   header("location:../signup.php?error=statementfailed");
   exit();
 }
-$hashedPwd=password_hash($pwd, PASSWORD_DEFAULT);
+$hashedPwd=password_hash($pwd, PASSWORD_DEFAULT);//hashing password
 mysqli_stmt_bind_param($stmt,"ssss",$name,$email,$username,$hashedPwd);
 mysqli_stmt_execute($stmt);
 mysqli_stmt_close($stmt);
@@ -99,24 +104,25 @@ function emptyInputLogin($username,$pwd)
   }
   return $result;
 }
+//logging in
 function loginUser($conn,$username,$pwd)
 {
-  $uidExists=uidExists($conn,$username,$username);
-  if ($uidExists===false) {
+  $uidExists=uidExists($conn,$username,$username);//check if user exists in database
+  if ($uidExists===false) {//if it dosent send back
     header("location:../login.php?error=wronglogin");
     exit();
   }
-  $pwdHashed=$uidExists["usersPWD"];
-  $checkPWD=password_verify($pwd,$pwdHashed);
-  if ($checkPWD===false) {
+  $pwdHashed=$uidExists["usersPWD"];//get the hashed password from database
+  $checkPWD=password_verify($pwd,$pwdHashed);//check the password provided against password in database
+  if ($checkPWD===false) {//if password is incorrect
     header("location:../login.php?error=wronglogin");
     exit();
   }
   else if ($checkPWD===true) {
     session_start();
     $_SESSION["userid"] =$uidExists["usersID"];
-    $_SESSION["useruid"] =$uidExists["usersUid"];
-    header("location:../index.php?");
+    $_SESSION["useruid"] =$uidExists["usersUID"];
+    header("location:../Index.php");
     exit();
   }
 }
