@@ -16,8 +16,14 @@ session_start();
           <li class="menu_li"><a href="">About</a></li>
           <?php
            if (isset($_SESSION["useruid"])) {
-             echo "<li><a href='profile.php'>Profile Page</a></li>";
-             echo "<li><a href='includes/logout.inc.php'>Log Out</a></li>";
+             echo "<li class='menu_li'><a href=''>Factory</a></li>";
+             echo "<li class='menu_li'><a href='profile.php'>Profile</a></li>";
+             echo "<li class='menu_li'><a href=''>Characters</a></li>";
+             echo "<li class='menu_li'><a href=''>Market</a></li>";
+             echo "<li class='menu_li'><a href=''>Inventory</a></li>";
+             echo "<li class='menu_li'><a href=''>Mail</a></li>";
+             echo "<li class='menu_li'><a href=''>Hire Workers</a></li>";
+             echo "<li class='menu_li'><a href='includes/logout.inc.php'>Log Out</a></li>";
            }
            else {
              echo "<li class='menu_li'><a href='signup.php'>Sign Up</a></li>";

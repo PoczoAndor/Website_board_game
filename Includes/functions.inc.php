@@ -122,7 +122,7 @@ function loginUser($conn,$username,$pwd)
     session_start();
     $_SESSION["userid"] =$uidExists["usersID"];
     $_SESSION["useruid"] =$uidExists["usersUID"];
-    header("location:../Index.php");
+    header("location:../create_character.php");
     exit();
   }
 }
