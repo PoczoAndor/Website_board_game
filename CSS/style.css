@@ -1,0 +1,30 @@
+body
+{
+    margin:auto;
+    width:1024px;
+    padding:10px;
+    background-color:#ebebeb;
+    font-size:14px;
+    font-family:Verdana;
+}
+.menu_ul{
+  list-style-type: none;
+ margin: 0;
+ padding: 0;
+ overflow: hidden;
+background-color: #333333;
+}
+.menu_li
+{
+  float: left;
+}
+.menu_li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+.menu_li a:hover {
+  background-color: #111111;
+}
