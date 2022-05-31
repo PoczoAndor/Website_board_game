@@ -49,5 +49,10 @@ button[type=submit] {
   cursor: pointer;
 }
 button[type=submit]:hover {
-  background-color: #45a049;
+  background-color:#45a049;
+}
+a:link#profile_picture_pick {
+  width:150px;
+  height:180px;
+  padding:10px;
 }

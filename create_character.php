@@ -2,8 +2,8 @@
 include_once'header.php';
  ?>
  <h1>Create character:</h1>
- 
  <form action="Includes\create_character.inc.php" method="post">
+   <label for="select_character_name">Write character name:</label>
    <input type="text" name="character_name" placeholder="Your Characters Name...">
    <label for="select_class">Choose a Class:</label>
    <select id="select_class" name="selected_class">
@@ -22,6 +22,23 @@ include_once'header.php';
    </select>
    <button type="submit" name="submit">Create Character</button>
  </form>
+ <?php
+ if (isset($_GET["error"]))
+ {
+   if ($_GET["error"]=="image1") {
+     echo "<p>You picked image 1</p>";
+     $picked_profile_picture="image1";
+   }
+   if ($_GET["error"]=="image2") {
+     echo "<p>You picked image 2</p>";
+     $picked_profile_picture="image2";
+   }
+ }
+ else
+ {
+header("location:pick_profile_picture.php");
+ }
+   ?>
 <?php
 include_once'footer.php';
  ?>

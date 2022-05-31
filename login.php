@@ -1,6 +1,10 @@
 <?php
 include_once'header.php';
  ?>
+ <style>
+  <?php include "style.css" ?>
+</style>
+
  <section class="signup-form">
    <h1>Log In</h1>
    <form action="Includes\login.inc.php" method="post">
