@@ -122,7 +122,27 @@ function loginUser($conn,$username,$pwd)
     session_start();
     $_SESSION["userid"] =$uidExists["usersID"];
     $_SESSION["useruid"] =$uidExists["usersUID"];
-    header("location:../create_character.php");
+    header("location:../login_game_menu.php");
     exit();
   }
+}
+function get_acc_fammily_name($conn,$userid)
+{
+ $sql="SELECT usersName FROM users WHERE usersID =?;";
+ $stmt=mysqli_stmt_init($conn);
+mysqli_stmt_prepare($stmt,$sql);
+mysqli_stmt_bind_param($stmt,"s",$userid);
+mysqli_stmt_execute($stmt);
+$resultData=mysqli_stmt_get_result($stmt);
+if($row=mysqli_fetch_assoc($resultData))
+{
+  return $row;
+}
+else
+ {
+  $result=false;
+  return $result;
+ }
+
+mysqli_stmt_close($stmt);
 }

@@ -25,6 +25,7 @@ include_once'header.php';
      else if($_GET["error"]=="none")
      {
        echo "<p>Log in succsessful</p>";
+       
      }
    }
     ?>

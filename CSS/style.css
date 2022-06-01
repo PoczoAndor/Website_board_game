@@ -51,8 +51,8 @@ button[type=submit] {
 button[type=submit]:hover {
   background-color:#45a049;
 }
-a:link#profile_picture_pick {
-  width:150px;
-  height:180px;
-  padding:10px;
+.list_of_characters{
+  background-color: blue;
+   height: 200px;
+   width: 250px;
 }

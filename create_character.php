@@ -1,5 +1,7 @@
 <?php
 include_once'header.php';
+require_once 'Includes\dbh.inc.php';
+require_once 'Includes\functions.inc.php';
  ?>
  <h1>Create character:</h1>
  <form action="Includes\create_character.inc.php" method="post">
@@ -20,7 +22,7 @@ include_once'header.php';
      <option value="builder">Builder</option>
      <option value="tailoring">Tailoring</option>
    </select>
-   <button type="submit" name="submit">Create Character</button>
+   <button type="submit" name="create_character">Create Character</button>
  </form>
  <?php
  if (isset($_GET["error"]))
