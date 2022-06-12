@@ -27,6 +27,7 @@ function signup_form_data ()
 //error handlers functions
 function emptyInputSignup()
 {
+  
   $formArray=signup_form_data ();
   if (empty($formArray['name'])||empty($formArray['email'])||empty($formArray['uid'])||empty($formArray['pwd'])||empty($formArray['pwdrepeat']))
 {
