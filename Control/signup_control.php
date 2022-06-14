@@ -1,13 +1,8 @@
 <?php
 require_once '../Classes\dbh_class.php';
 require_once '../Model\account_model.php';
-require_once '../Control\signup_control.php';
-class Signup extends Account
-{
-  
-//post data from form
-  
-  //error handlers functions
+class Signup extends Account//create a class which acceses the accounts
+{//start the error handlers
   function emptyInputSignup()
   {
     $result;
@@ -78,14 +73,14 @@ class Signup extends Account
     }
     return $result;
   }
-  function alreadyTaken ()
+  function alreadyTaken ()//check if anything already exists in database if not create a new account
   {
-    $formArray=signup_form_data ();
-    $newUser=new Account($formArray['name'],$formArray['email'],$formArray['uid'],$formArray['pwd'],$formArray['pwdrepeat']);
-    $newUser->checkUser();
+    $formArray=signup_form_data ();//get data from the form
+    $newUser=new Account($formArray['name'],$formArray['email'],$formArray['uid'],$formArray['pwd'],$formArray['pwdrepeat']);//create a new class account and assign it the data from the form
+    $newUser->checkUser();//check if user exists if not create the account
   }
 }
-function signup_form_data ()
+function signup_form_data ()//acces all the form data and put it inside an array
   {
     $name=$_POST["name"];
     $email=$_POST["email"];
@@ -95,7 +90,7 @@ function signup_form_data ()
     $formArray= array('name' => $name,'email' => $email,'uid' => $uid,'pwd' => $pwd,'pwdrepeat' => $pwdrepeat);
     return $formArray;
   }
-  function checkErrors()
+  function checkErrors()//the function using all the error handlers and containing the error messages
 {
   $newSignup=new Signup("name","email","uid","pwd","pwdrepeat");
   if($newSignup->emptyInputSignup())
@@ -123,27 +118,19 @@ function signup_form_data ()
     header("location:../Views\signup.php?error=passworddontmatch");
     exit();
   }
-  else if($newSignup->alreadyTaken ())
+  else if($newSignup->alreadyTaken ())//if no errors check if user does not exists, if it does not create the new user
   {
 
   }
-  
-  
-  
-  
-  
-  
 
 }
 if (isset($_POST["submit"]))//check if the user got here trough submit
 {
-// start the error handlers
-checkErrors();
-//$newSignup->build();
+checkErrors();//check all the errors and then create the user if no errors
 }
 else
 {//if it didnt get here thrugh submit
-
+  header("location:../Views\signup.php");
+  exit();
 }
-//errors remain  check if acc name ,fammily name,email, is not taken ,
 ?>
