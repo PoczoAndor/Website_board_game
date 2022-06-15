@@ -1,5 +1,5 @@
 <?php
-include_once'../header.php';
+include_once'header.php';
  ?>
  <style>
   <?php include "..\css/style.css" ?>
@@ -10,10 +10,10 @@ include_once'../header.php';
    <form action="../Control\login_control.php" method="post">
      <input type="text" name="uid" placeholder="Username or Email">
      <input type="password" name="pwd" placeholder="Password...">
-     <button type="submit" name="submit">Log In</button>
+     <button type="submit" name="submit_login">Log In</button>
    </form>
    <?php
-   if (isset($_GET["error"]))
+   if (isset($_GET["error"]))//if there is error
    {
      if ($_GET["error"]=="emptyinput") {
        echo "<p>fill in all fields</p>";
@@ -31,5 +31,5 @@ include_once'../header.php';
     ?>
  </section>
 <?php
-include_once'../footer.php';
+include_once'footer.php';
  ?>

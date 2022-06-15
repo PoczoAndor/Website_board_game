@@ -6,7 +6,7 @@ session_start();
   <head>
     <meta charset="utf-8">
     <title>Test Board Game</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="..\css/style.css">
   </head>
   <body>
     <nav>
@@ -15,7 +15,7 @@ session_start();
           <li class="menu_li"><a href="Index.php">Home</a></li>
           <li class="menu_li"><a href="">About</a></li>
           <?php
-           if (isset($_SESSION["useruid"])) {
+           if (isset($_SESSION["acc_id"])) {
              echo "<li class='menu_li'><a href=''>Factory</a></li>";
              echo "<li class='menu_li'><a href='profile.php'>Profile</a></li>";
              echo "<li class='menu_li'><a href=''>Characters</a></li>";

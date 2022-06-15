@@ -50,32 +50,9 @@ protected function checkUser()//check if anything already exists in the database
       //signupp the user
       $this->createUser();
       header("location:../Views\signup.php?error=none");
-    }
-    
-  }
-  protected function account_login()
-  {
-    $result;
-    $stmt=$this->conn()->prepare("SELECT usersPWD FROM users WHERE usersUID =?");//sql statement which we gona run in database
-    
-    if(!$stmt->execute(array($this->uid,$this->pwd,)))//execute the stamtnet and if fails send an error
-    {
-      $stmt=null;
-      header("location:../Views\login.php?error=statementfailed");
       exit();
     }
-    $hashedPWD=$stmt->fetchAll(PDO::FETCH_ASSOC);
-    $checkPWD=password_verify($this->pwd,$hashedPWD[0]["usersPWD"]);
-    if($stmt->rowCount()>0 & $checkPWD)//if there are valuse in database and password is correct send true to log in
-    {
-      $result=true;
-      exit();
-    }
-    else
-    {
-      $result=false;//if there are no values send false wrong input
-    }
-    return $result;
+    $stmt=null;
   }
   
 }

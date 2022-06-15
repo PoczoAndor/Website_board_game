@@ -1,18 +1,18 @@
 <?php
-require_once '../Model\account_model.php';
-class Login
+require_once '../Model\login_model.php';
+class Login extends AccountLogin
 {
-function login_form_data()
+function login_form_data()//gather from data
 {
     $uid=$_POST["uid"];
     $pwd=$_POST["pwd"];
     $formArray= array('uid' => $uid,'pwd' => $pwd,);
     return $formArray;    
 }
-function emptyInputLogin()
+function emptyInputLogin()//check if form was empty
 {
   $result;
-  $formArray=login_form_data ();
+  $formArray=$this->login_form_data ();
   if (empty($formArray['uid'])||empty($formArray['pwd']))
   {
     $result=true;
@@ -25,37 +25,41 @@ function emptyInputLogin()
 }
 function loginUser()
 {
-    $formArray=login_form_data ();
-    $newLogin=new Account($formArray['uid'],$formArray['pwd']);
-    if($newLogin->account_login())
+    $formArray=$this->login_form_data ();//get form data
+    $newLogin=new AccountLogin($formArray['uid'],$formArray['pwd']);//start a new class for account
+    if($newLogin->account_login()==true)//if login succsessful
     {
-        session_start();
-        $_SESSION["userid"] =$uidExists["usersID"];
-        $_SESSION["useruid"] =$uidExists["usersUID"];
-        header("location:../login_game_menu.php");
-        exit();
+      $acc_info=$newLogin->get_acc_id_name();//get acc id and name
+      session_start();//start a session
+      $_SESSION["acc_id"] = $acc_info['id'];//store in session acc id
+      $_SESSION["fammily_name"]= $acc_info['fammily_name'];//store in session acc fammily name
+      header("location:../Views\login_game_menu.php");//send user to game menu
+      exit();
     }
-    else
+    else//if login not succsessful
     {
-        header("location:../login.php?error=wronglogin");
+        header("location:../Views\login.php?error=wronglogin");
         exit();
     }
 }
 }
-if(isset($_POST["submit"]))
+if(isset($_POST["submit_login"]))//check if user got here trough submit
 {
-
-  require_once 'dbh.inc.php';
-  require_once 'functions.inc.php';
-  if(emptyInputLogin($username,$pwd)!==false)
+  $userLogin=new Login("username","password");//create a login class that contains the methods and constructs a login model the passed in arguments are placeholder for the real cunstructor in the model
+  if($userLogin->emptyInputLogin()!==false)//if login was unsuccsesful 
   {
-    header("location:../login.php?error=emptyinput");
+    
+    header("location:../Views\login.php?error=emptyinput");
     exit();
   }
-  loginUser($conn,$username,$pwd);
+  else
+  {
+    $userLogin->loginUser();//if it was succsessful login the user
+  }
+  
 }
 else {
-  header("location:../login.php");
+  header("location:../Views\login.php");//if user didnt get here trough submit
     exit();
 }
 ?>

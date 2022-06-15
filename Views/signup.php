@@ -1,10 +1,10 @@
     <link rel="stylesheet" href="..\css/style.css">
 <?php
-include_once'../header.php';
+include_once'header.php';
  ?>
  <section class="signup-form">
    <h1>Sign Upp</h1>
-   <form action=../Control\signup_control.php method="post">
+   <form action="../Control\signup_control.php" method="post">
      <input type="text" name="name" placeholder="Characters family name..">
      <input type="text" name="email" placeholder="Email...">
      <input type="text" name="uid" placeholder="Account username...">
@@ -51,5 +51,5 @@ include_once'../header.php';
  </section>
 
 <?php
-include_once'../footer.php';
+include_once'footer.php';
  ?>
