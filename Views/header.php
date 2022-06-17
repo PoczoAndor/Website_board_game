@@ -23,7 +23,7 @@ session_start();
              echo "<li class='menu_li'><a href=''>Inventory</a></li>";
              echo "<li class='menu_li'><a href=''>Mail</a></li>";
              echo "<li class='menu_li'><a href=''>Hire Workers</a></li>";
-             echo "<li class='menu_li'><a href='includes/logout.inc.php'>Log Out</a></li>";
+             echo "<li class='menu_li'><a href='..\Control\logout_control.php'>Log Out</a></li>";
            }
            else {
              echo "<li class='menu_li'><a href='signup.php'>Sign Up</a></li>";

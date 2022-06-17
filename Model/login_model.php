@@ -33,8 +33,6 @@ protected function account_login()
       
     }
     return $result;
-    $stmt=null;
-    exit();
   }
   protected function get_acc_id_name()
   {
@@ -45,13 +43,16 @@ protected function account_login()
       header("location:../Views\login.php?error=statementfailed");
       exit();
     }
-    $acc_info=$stmt->fetchAll(PDO::FETCH_ASSOC);//get the data into an associative array
-    $acc_id=$acc_info[0]["usersID"];//get user id
-    $acc_fammily_name=$acc_info[1]["usersName"];//get userName
-    $acc_info_array= array('id' => $acc_id,'fammily_name' => $acc_fammily_name,);//insert the data into an array
-    return $acc_info_array;//return the information
-    $stmt=null;
-    exit();
+    else
+    {
+      $acc_info=$stmt->fetchAll(PDO::FETCH_ASSOC);//get the data into an associative array
+      $acc_id=$acc_info[0]["usersID"];//get user id
+      $acc_fammily_name=$acc_info[1]["usersName"];//get userName
+      $acc_info_array= array('id' => $acc_id,'fammily_name' => $acc_fammily_name,);//insert the data into an array
+      return $acc_info_array;//return the information
+      $stmt=null;
+      exit();
+    }
   }
 
 }

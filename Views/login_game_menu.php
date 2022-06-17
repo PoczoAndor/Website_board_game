@@ -2,7 +2,7 @@
 include_once'header.php';
  ?>
  <?php
-  if (isset($_SESSION["useruid"]))
+  if (isset($_SESSION["acc_id"]))
   {
 
   }

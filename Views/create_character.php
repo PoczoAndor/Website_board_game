@@ -1,7 +1,5 @@
 <?php
 include_once'header.php';
-require_once 'Includes\dbh.inc.php';
-require_once 'Includes\functions.inc.php';
  ?>
  <h1>Create character:</h1>
  <form action="Includes\create_character.inc.php" method="post">

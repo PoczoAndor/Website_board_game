@@ -33,15 +33,16 @@ function loginUser()
       session_start();//start a session
       $_SESSION["acc_id"] = $acc_info['id'];//store in session acc id
       $_SESSION["fammily_name"]= $acc_info['fammily_name'];//store in session acc fammily name
-      header("location:../Views\login_game_menu.php");//send user to game menu
-      exit();
+      header("location:../Views\login_game_menu.php", true);
     }
     else//if login not succsessful
     {
-        header("location:../Views\login.php?error=wronglogin");
-        exit();
+      header("location:../Views\login.php?error=wronglogin");
+        
     }
+    
 }
+
 }
 if(isset($_POST["submit_login"]))//check if user got here trough submit
 {
@@ -53,13 +54,15 @@ if(isset($_POST["submit_login"]))//check if user got here trough submit
     exit();
   }
   else
-  {
+  { 
     $userLogin->loginUser();//if it was succsessful login the user
   }
   
 }
-else {
-  header("location:../Views\login.php");//if user didnt get here trough submit
+else
+ {
+    header("location:../Views\login.php");//if user didnt get here trough submit
     exit();
-}
+  }
+
 ?>
