@@ -4,7 +4,12 @@ include_once'header.php';
  <?php
   if (isset($_SESSION["acc_id"]))
   {
-
+    if (isset($_GET["error"]))
+    {
+      if ($_GET["error"]=="emptyinput") {
+        echo "<p>Error please fill in all fields</p>";
+      }
+    }
   }
   else {
     header("location:./login.php");
