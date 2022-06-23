@@ -23,8 +23,18 @@ include_once'header.php';
  <h1>Select or create a character</h1>
  <div class="list_of_characters">
    <ul>
-     <li>BOBY</li>
-     <li>dude</li>
+   <?php
+           if (isset($_SESSION["acc_id"])) {
+             echo "<li class='menu_li'><a href=''>Factory</a></li>";
+             echo "<li class='menu_li'><a href='profile.php'>Profile</a></li>";
+             echo "<li class='menu_li'><a href=''>Characters</a></li>";
+             echo "<li class='menu_li'><a href=''>Market</a></li>";
+             echo "<li class='menu_li'><a href=''>Inventory</a></li>";
+             echo "<li class='menu_li'><a href=''>Mail</a></li>";
+             echo "<li class='menu_li'><a href=''>Hire Workers</a></li>";
+             echo "<li class='menu_li'><a href='..\Control\logout_control.php'>Log Out</a></li>";
+           }
+   ?>
    </ul>
  </div>
  <form class="create_character_game_menu" action="create_character.php" method="post">

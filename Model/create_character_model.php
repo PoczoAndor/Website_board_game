@@ -54,5 +54,32 @@ protected function create_character()//function to create an account in the data
     }
     $stmt=null;
   }
+  protected function get_character($user_id)
+  {
+    $stmt_check_character=$this->conn()->prepare("SELECT * FROM characters WHERE usersID =?");//sql statement which we gona run in database
+    if(!$stmt_check_character->execute(array($user_id)))//execute the stamtnet and if fails send an error
+    {
+      $stmt=null;
+      header("location:../Views\pick_profile_picture.php?error=statementfailedCheckCharacter");
+      exit();
+    }
+    else
+    {
+      $character_info=$stmt_check_character->fetchAll(PDO::FETCH_ASSOC);//get the data into an associative array
+      $character_id=$character_info[0]["charactersID"];
+      $character_fammily_name=$character_info[0]["charactersFammily_name"];
+      $character_name=$character_info[0]["charactersName"];
+      $character_class=$character_info[0]["charactersClass"];
+      $character_looks=$character_info[0]["charactersLooks"];
+      $character_gold=$character_info[0]["charactersGold"];
+      $character_life=$character_info[0]["charactersLife"];
+      $character_mana=$character_info[0]["charactersMana"];
+      $character_profession=$character_info[0]["charactersProfession"];
+      $character_info_array= array('characterID' => $character_id,'character_fammily_name' => $character_fammily_name,'character_name' => $character_name,'character_class' => $character_class,'character_looks' => $character_looks,'character_gold' => $character_gold,'character_life' => $character_life,'character_mana' => $character_mana,'character_profession' => $character_profession,);
+      return $acc_info_array;
+      $stmt=null;
+      exit();
+    }
+  }
 }
 ?>
