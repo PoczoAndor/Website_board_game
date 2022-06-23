@@ -32,6 +32,7 @@ else
 {
     header("location:../Views\pick_profile_picture.php");
 }
+
    ?>
 <?php
 include_once'footer.php';

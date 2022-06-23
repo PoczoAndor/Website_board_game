@@ -9,6 +9,10 @@ include_once'header.php';
       if ($_GET["error"]=="emptyinput") {
         echo "<p>Error please fill in all fields</p>";
       }
+      else if($_GET["error"]=="character_creation_succes")
+      {
+        echo "<h2>Character created</h2>";
+      }
     }
   }
   else {
